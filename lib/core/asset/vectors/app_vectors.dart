@@ -80,7 +80,19 @@ class AppVectors{
   static const user = '${basePathIcons}user$format';
   static const waterTap = '${basePathIcons}water_tap$format';
 
+  //Illustration
+  static const auth = '${basePathIllustration}auth$format';
+  static const card = '${basePathIllustration}card$format';
+  static const payment = '${basePathIllustration}payment$format';
+  static const saving = '${basePathIllustration}saving$format';
+  static const transfers = '${basePathIllustration}transfer$format';
 
+  //navigation_bar
+  static const faceId = '${basePathNavigationBar}face_id$format';
+  static const fingerprint ='${basePathIllustration}fingerprint$format';
+  static const group = '${basePathNavigationBar}group$format';
+  static const switchOff = '${basePathNavigationBar}switch_off$format';
+  static const switchOn = '${basePathNavigationBar}switch_on$format';
 
 
 
