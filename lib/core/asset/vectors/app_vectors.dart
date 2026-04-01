@@ -1,9 +1,9 @@
 class AppVectors{
-  static const basePathCategory = 'assets/svg/category';
+  static const basePathCategory = 'assets/svg/category/';
   static const basePathFlags =  'assets/svg/flags';
-  static const basePathIllustration = 'assets/svg/Illustration';
-  static const basePathIcons = 'assets/svg/icons';
-  static const basePathNavigationBar = 'assets/svg/navigation_bar';
+  static const basePathIllustration = 'assets/svg/Illustration/';
+  static const basePathIcons = 'assets/svg/icons/';
+  static const basePathNavigationBar = 'assets/svg/navigation_bar/';
 
   static const format = '.svg';
   //category
@@ -82,6 +82,7 @@ class AppVectors{
 
   //Illustration
   static const auth = '${basePathIllustration}auth$format';
+  static const signIn = '${basePathIllustration}sign_in$format';
   static const card = '${basePathIllustration}card$format';
   static const payment = '${basePathIllustration}payment$format';
   static const saving = '${basePathIllustration}saving$format';
@@ -89,7 +90,7 @@ class AppVectors{
 
   //navigation_bar
   static const faceId = '${basePathNavigationBar}face_id$format';
-  static const fingerprint ='${basePathIllustration}fingerprint$format';
+  static const fingerprint ='${basePathNavigationBar}fingerprint$format';
   static const group = '${basePathNavigationBar}group$format';
   static const switchOff = '${basePathNavigationBar}switch_off$format';
   static const switchOn = '${basePathNavigationBar}switch_on$format';
