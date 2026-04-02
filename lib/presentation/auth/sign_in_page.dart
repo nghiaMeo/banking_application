@@ -1,5 +1,7 @@
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
+import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/presentation/auth/sign_up_page.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +134,9 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                               ),
                               SizedBox(width: 6),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  AppNavigator.pushReplacement(context, SignUpPage());
+                                },
                                 child: TypoTheme.captionSemibold_14(
                                   context,
                                   ColorsTheme.firstPrimary,
