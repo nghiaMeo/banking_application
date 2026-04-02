@@ -22,8 +22,16 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           InkWell(
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             onTap: () {},
-            child: SvgPicture.asset(AppVectors.left, height: 16, width: 16),
+            child: SvgPicture.asset(
+              AppVectors.left,
+              height: 16,
+              width: 16,
+              color: Colors.white,
+            ),
           ),
           SizedBox(width: 10),
           TypoTheme.titleSemiBold_20(context, Colors.white, text: titleAppBar),

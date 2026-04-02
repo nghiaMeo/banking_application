@@ -79,6 +79,7 @@ class AppVectors{
   static const up = '${basePathIcons}up$format';
   static const user = '${basePathIcons}user$format';
   static const waterTap = '${basePathIcons}water_tap$format';
+  static const unHide = '${basePathIcons}un_hide$format';
 
   //Illustration
   static const auth = '${basePathIllustration}auth$format';
