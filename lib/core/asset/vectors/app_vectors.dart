@@ -79,10 +79,12 @@ class AppVectors{
   static const up = '${basePathIcons}up$format';
   static const user = '${basePathIcons}user$format';
   static const waterTap = '${basePathIcons}water_tap$format';
+  static const unHide = '${basePathIcons}un_hide$format';
 
   //Illustration
   static const auth = '${basePathIllustration}auth$format';
   static const signIn = '${basePathIllustration}sign_in$format';
+  static const signUp = '${basePathIllustration}sign_up$format';
   static const card = '${basePathIllustration}card$format';
   static const payment = '${basePathIllustration}payment$format';
   static const saving = '${basePathIllustration}saving$format';
