@@ -84,6 +84,7 @@ class AppVectors{
   //Illustration
   static const auth = '${basePathIllustration}auth$format';
   static const signIn = '${basePathIllustration}sign_in$format';
+  static const signUp = '${basePathIllustration}sign_up$format';
   static const card = '${basePathIllustration}card$format';
   static const payment = '${basePathIllustration}payment$format';
   static const saving = '${basePathIllustration}saving$format';

@@ -19,4 +19,12 @@ class AppNavigator {
       (route) => false,
     );
   }
+
+  static void pop(BuildContext context, {Widget? fallBackWidget}) {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    } else if (fallBackWidget != null) {
+      pushReplacement(context, fallBackWidget);
+    }
+  }
 }
