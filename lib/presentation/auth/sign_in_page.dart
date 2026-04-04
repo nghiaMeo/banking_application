@@ -1,7 +1,10 @@
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/presentation/auth/change_password_page.dart';
+import 'package:bank_app/presentation/auth/forgot_password_page.dart';
 import 'package:bank_app/presentation/auth/sign_up_page.dart';
+import 'package:bank_app/presentation/auth/verify_code_page.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:flutter/material.dart';
@@ -87,10 +90,19 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.centerRight,
-                          child: TypoTheme.bodyMedium_14(
-                            context,
-                            ColorsTheme.neutralWhiteGrey,
-                            text: 'Forgot your password ?',
+                          child: InkWell(
+                            onTap: () {
+                              AppNavigator.pushReplacement(
+                                context,
+                                VerifyCodePage()
+                                // ForgotPasswordPage(),
+                              );
+                            },
+                            child: TypoTheme.bodyMedium_14(
+                              context,
+                              ColorsTheme.neutralWhiteGrey,
+                              text: 'Forgot your password ?',
+                            ),
                           ),
                         ),
                         const SizedBox(height: 18),
@@ -135,7 +147,10 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                               SizedBox(width: 6),
                               InkWell(
                                 onTap: () {
-                                  AppNavigator.pushReplacement(context, SignUpPage());
+                                  AppNavigator.pushReplacement(
+                                    context,
+                                    SignUpPage(),
+                                  );
                                 },
                                 child: TypoTheme.captionSemibold_14(
                                   context,
