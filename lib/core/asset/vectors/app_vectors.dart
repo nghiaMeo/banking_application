@@ -1,11 +1,12 @@
-class AppVectors{
+class AppVectors {
   static const basePathCategory = 'assets/svg/category/';
-  static const basePathFlags =  'assets/svg/flags';
+  static const basePathFlags = 'assets/svg/flags';
   static const basePathIllustration = 'assets/svg/Illustration/';
   static const basePathIcons = 'assets/svg/icons/';
   static const basePathNavigationBar = 'assets/svg/navigation_bar/';
 
   static const format = '.svg';
+
   //category
   static const contacts = '${basePathCategory}contacts$format';
   static const creditCard = '${basePathCategory}credit_card$format';
@@ -16,6 +17,7 @@ class AppVectors{
   static const receiptList = '${basePathCategory}receipt_list$format';
   static const syncDevices = '${basePathCategory}sync_devices$format';
   static const wallet = '${basePathCategory}wallet$format';
+
   //flags
   static const ar = '${basePathFlags}Ar$format';
   static const cn = '${basePathFlags}Cn$format';
@@ -51,7 +53,7 @@ class AppVectors{
   static const hide = '${basePathIcons}hide$format';
   static const home = '${basePathIcons}home$format';
   static const homeDill = '${basePathIcons}home_dill$format';
-  static const hided= '${basePathIcons}hide$format';
+  static const hided = '${basePathIcons}hide$format';
   static const inPhone = '${basePathIcons}in_phone$format';
   static const left = '${basePathIcons}left$format';
   static const letter = '${basePathIcons}letter$format';
@@ -89,15 +91,13 @@ class AppVectors{
   static const payment = '${basePathIllustration}payment$format';
   static const saving = '${basePathIllustration}saving$format';
   static const transfers = '${basePathIllustration}transfer$format';
+  static const successPassword =
+      '${basePathIllustration}success_password$format';
 
   //navigation_bar
   static const faceId = '${basePathNavigationBar}face_id$format';
-  static const fingerprint ='${basePathNavigationBar}fingerprint$format';
+  static const fingerprint = '${basePathNavigationBar}fingerprint$format';
   static const group = '${basePathNavigationBar}group$format';
   static const switchOff = '${basePathNavigationBar}switch_off$format';
   static const switchOn = '${basePathNavigationBar}switch_on$format';
-
-
-
-
 }

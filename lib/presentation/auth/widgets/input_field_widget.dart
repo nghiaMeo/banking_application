@@ -8,6 +8,7 @@ Widget inputFieldWidget(
   required String hint,
   Widget? trailing,
   bool obscureText = false,
+  TextEditingController? controller,
 }) {
   return Container(
     height: 52,
@@ -20,6 +21,7 @@ Widget inputFieldWidget(
       children: [
         Expanded(
           child: TextField(
+            controller: controller,
             obscureText: obscureText,
             decoration: InputDecoration(
               isDense: true,
