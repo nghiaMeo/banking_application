@@ -4,8 +4,9 @@ import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
 import 'package:bank_app/presentation/auth/sign_in_page.dart';
-import 'package:bank_app/presentation/auth/verify_code_page.dart';
+import 'package:bank_app/presentation/auth/success_change_password_page.dart';
 import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
+import 'package:bank_app/presentation/auth/widgets/custom_card_widget.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,7 +26,7 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
+      backgroundColor: ColorsTheme.neutralWhileLight,
       appBar: AppBarCustom(
         titleAppBar: "Change password",
         backGroundColor: Colors.transparent,
@@ -39,19 +40,8 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
               horizontal: 22.0,
               vertical: 20.0,
             ),
-            child: Container(
-              padding: const EdgeInsets.all(24.0),
-              decoration: BoxDecoration(
-                color: ColorsTheme.neutralWhite,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.03),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
+            child: customCardWidget(
+              context,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +73,13 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
                   buttonWidget(
                     context,
                     title: 'Change password',
-                    backgroundColorButton: ColorsTheme.firstPrimary,
+                    backgroundColorButton: ColorsTheme.fourthPrimary,
                     textColor: Colors.white,
                     onTap: () {
-                      AppNavigator.pushReplacement(context, SignInPage());
+                      AppNavigator.pushReplacement(
+                        context,
+                        SuccessChangePasswordPage(),
+                      );
                     },
                   ),
                 ],
