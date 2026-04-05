@@ -27,6 +27,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
       appBar: AppBarCustom(
         titleAppBar: "Sign up",
         backGroundColor: ColorsTheme.firstPrimary,
+        colorElement: Colors.white,
         fallBackWidget: const SignInPage(),
       ),
       body: SafeArea(

@@ -1,7 +1,11 @@
 import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
+import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/presentation/auth/sign_in_page.dart';
+import 'package:bank_app/presentation/auth/verify_code_page.dart';
+import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,42 +19,18 @@ class ChangePasswordPage extends ConsumerStatefulWidget {
 }
 
 class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
+  bool obscureText_1 = true;
+  bool obscureText_2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 48,
-        leading: InkWell(
-          splashColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () {
-            AppNavigator.pop(context);
-          },
-          child: SafeArea(
-            child: Center(
-              child: SvgPicture.asset(
-                AppVectors.left,
-                height: 16,
-                width: 16,
-                colorFilter: const ColorFilter.mode(
-                  ColorsTheme.neutralGreyDeep,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ),
-          ),
-        ),
-        title: TypoTheme.titleSemiBold_20(
-          context,
-          ColorsTheme.neutralGreyDeep,
-          text: "Change password",
-        ),
-        centerTitle: false,
-        titleSpacing: 0,
+      appBar: AppBarCustom(
+        titleAppBar: "Change password",
+        backGroundColor: Colors.transparent,
+        colorElement: ColorsTheme.neutralGreyDeep,
+        fallBackWidget: SignInPage(),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -76,56 +56,38 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TypoTheme.captionSemibold_14(
+                  _buildInputFields(
                     context,
-                    ColorsTheme.neutralGreyMid,
-                    text: "Type your new password",
-                  ),
-                  const SizedBox(height: 12),
-                  inputFieldWidget(
-                    context,
-                    hint: "***********",
-                    obscureText: true,
-                    trailing: const Icon(
-                      Icons.visibility,
-                      color: ColorsTheme.neutralGreyMid,
-                    ),
+                    title: "Type your new password",
+                    hint: "*************",
+                    obscureText: obscureText_1,
+                    onToggle: () {
+                      setState(() {
+                        obscureText_1 = !obscureText_1;
+                      });
+                    },
                   ),
                   const SizedBox(height: 16),
-                  TypoTheme.captionSemibold_14(
+                  _buildInputFields(
                     context,
-                    ColorsTheme.neutralGreyMid,
-                    text: "Confirm password",
-                  ),
-                  const SizedBox(height: 12),
-                  inputFieldWidget(
-                    context,
-                    hint: "***********",
-                    obscureText: true,
-                    trailing: const Icon(
-                      Icons.visibility,
-                      color: ColorsTheme.neutralGreyMid,
-                    ),
+                    title: "Confirm your new password",
+                    hint: "*************",
+                    obscureText: obscureText_2,
+                    onToggle: () {
+                      setState(() {
+                        obscureText_2 = !obscureText_2;
+                      });
+                    },
                   ),
                   const SizedBox(height: 32),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorsTheme.firstPrimary,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: TypoTheme.titleSemiBold_16(
-                        context,
-                        Colors.white,
-                        text: 'Change password',
-                      ),
-                    ),
+                  buttonWidget(
+                    context,
+                    title: 'Change password',
+                    backgroundColorButton: ColorsTheme.firstPrimary,
+                    textColor: Colors.white,
+                    onTap: () {
+                      AppNavigator.pushReplacement(context, SignInPage());
+                    },
                   ),
                 ],
               ),
@@ -133,6 +95,41 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildInputFields(
+    BuildContext context, {
+    required String title,
+    required String hint,
+    required bool obscureText,
+    required VoidCallback onToggle,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TypoTheme.captionSemibold_14(
+          context,
+          ColorsTheme.neutralGreyMid,
+          text: title,
+        ),
+        const SizedBox(height: 12),
+        inputFieldWidget(
+          context,
+          hint: hint,
+          obscureText: obscureText,
+          trailing: InkWell(
+            onTap: onToggle,
+            child: SvgPicture.asset(
+              obscureText ? AppVectors.show : AppVectors.hide,
+              colorFilter: const ColorFilter.mode(
+                ColorsTheme.neutralGreyMid,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

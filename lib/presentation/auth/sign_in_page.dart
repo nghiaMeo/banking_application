@@ -28,6 +28,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     return Scaffold(
       appBar: AppBarCustom(
         titleAppBar: "Sign in",
+        colorElement: Colors.white,
         backGroundColor: ColorsTheme.firstPrimary,
       ),
       body: SafeArea(
@@ -94,8 +95,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                             onTap: () {
                               AppNavigator.pushReplacement(
                                 context,
-                                VerifyCodePage()
-                                // ForgotPasswordPage(),
+                                ForgotPasswordPage(),
                               );
                             },
                             child: TypoTheme.bodyMedium_14(

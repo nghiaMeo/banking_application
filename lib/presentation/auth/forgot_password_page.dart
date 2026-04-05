@@ -3,7 +3,10 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
 import 'package:bank_app/presentation/auth/sign_in_page.dart';
+import 'package:bank_app/presentation/auth/verify_code_page.dart';
+import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
+import 'package:bank_app/presentation/auth/widgets/text_field_custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +19,14 @@ class ForgotPasswordPage extends ConsumerStatefulWidget {
 }
 
 class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
+  final TextEditingController _phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,13 +88,13 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TypoTheme.captionSemibold_14(
+                  textFieldCustomWidget(
                     context,
-                    ColorsTheme.neutralGreyMid,
-                    text: "Type your phone number",
+                    _phoneController,
+                    title: "Type your phone number",
+                    color: ColorsTheme.neutralGreyMid,
+                    hint: "(+84)",
                   ),
-                  const SizedBox(height: 12),
-                  inputFieldWidget(context, hint: "(+84)"),
                   const SizedBox(height: 16),
                   TypoTheme.bodyMedium_14(
                     context,
@@ -91,24 +102,17 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                     text: "We texted you a code to verify your phone number",
                   ),
                   const SizedBox(height: 32),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorsTheme.fourthPrimary,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: TypoTheme.titleSemiBold_16(
+                  buttonWidget(
+                    context,
+                    title: "Send",
+                    backgroundColorButton: ColorsTheme.fourthPrimary,
+                    textColor: Colors.white,
+                    onTap: () {
+                      AppNavigator.pushReplacement(
                         context,
-                        Colors.white,
-                        text: 'Send',
-                      ),
-                    ),
+                        VerifyCodePage(phoneNumber: _phoneController.text),
+                      );
+                    },
                   ),
                 ],
               ),
