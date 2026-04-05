@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final String titleAppBar;
+  final Color colorElement;
   final Color backGroundColor;
   final Widget? fallBackWidget;
 
@@ -14,6 +15,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     required this.titleAppBar,
     required this.backGroundColor,
     this.fallBackWidget,
+    required this.colorElement,
   });
 
   @override
@@ -35,11 +37,11 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
               AppVectors.left,
               height: 16,
               width: 16,
-              color: Colors.white,
+              color: colorElement,
             ),
           ),
           SizedBox(width: 10),
-          TypoTheme.titleSemiBold_20(context, Colors.white, text: titleAppBar),
+          TypoTheme.titleSemiBold_20(context, colorElement, text: titleAppBar),
         ],
       ),
       toolbarHeight: 60,

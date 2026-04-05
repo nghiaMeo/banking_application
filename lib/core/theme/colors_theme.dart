@@ -14,6 +14,7 @@ class ColorsTheme{
   static const Color neutralWhiteGrey = Color(0xFFCACACA);
   static const Color neutralMilk = Color(0xFFCACACA);
   static const Color neutralVani = Color(0xFFE0E0E0);
+  static const Color neutralWhileLight = Color(0xFFF9F9F9);
   static const Color neutralWhite = Color(0xFFFFFFFF);
 
   // semantic

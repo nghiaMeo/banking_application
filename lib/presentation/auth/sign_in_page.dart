@@ -1,7 +1,9 @@
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/presentation/auth/forgot_password_page.dart';
 import 'package:bank_app/presentation/auth/sign_up_page.dart';
+import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     return Scaffold(
       appBar: AppBarCustom(
         titleAppBar: "Sign in",
+        colorElement: Colors.white,
         backGroundColor: ColorsTheme.firstPrimary,
       ),
       body: SafeArea(
@@ -87,33 +90,28 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.centerRight,
-                          child: TypoTheme.bodyMedium_14(
-                            context,
-                            ColorsTheme.neutralWhiteGrey,
-                            text: 'Forgot your password ?',
+                          child: InkWell(
+                            onTap: () {
+                              AppNavigator.pushReplacement(
+                                context,
+                                ForgotPasswordPage(),
+                              );
+                            },
+                            child: TypoTheme.bodyMedium_14(
+                              context,
+                              ColorsTheme.neutralWhiteGrey,
+                              text: 'Forgot your password ?',
+                            ),
                           ),
                         ),
                         const SizedBox(height: 18),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 52,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: ColorsTheme.fourthPrimary,
-                              foregroundColor: ColorsTheme.thirdPrimary,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: TypoTheme.titleSemiBold_16(
-                              context,
-                              ColorsTheme.thirdPrimary,
-                              text: 'Sign in',
-                            ),
-                          ),
-                        ),
+                        buttonWidget(context,
+                            title: 'Sign in',
+                            backgroundColorButton: ColorsTheme.fourthPrimary,
+                            textColor: ColorsTheme.neutralWhite,
+                            onTap: (){
+
+                            }),
                         const SizedBox(height: 26),
                         Center(
                           child: Icon(
@@ -135,7 +133,10 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                               SizedBox(width: 6),
                               InkWell(
                                 onTap: () {
-                                  AppNavigator.pushReplacement(context, SignUpPage());
+                                  AppNavigator.pushReplacement(
+                                    context,
+                                    SignUpPage(),
+                                  );
                                 },
                                 child: TypoTheme.captionSemibold_14(
                                   context,

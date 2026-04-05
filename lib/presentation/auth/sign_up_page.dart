@@ -2,6 +2,7 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/presentation/auth/sign_in_page.dart';
+import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
 import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
       appBar: AppBarCustom(
         titleAppBar: "Sign up",
         backGroundColor: ColorsTheme.firstPrimary,
+        colorElement: Colors.white,
         fallBackWidget: const SignInPage(),
       ),
       body: SafeArea(
@@ -57,7 +59,13 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                         SizedBox(height: 18),
                         _buildCheck(context),
                         SizedBox(height: 30),
-                        _buildButton(context),
+                        buttonWidget(
+                          context,
+                          title: 'Sign up',
+                          backgroundColorButton: ColorsTheme.fourthPrimary,
+                          textColor: ColorsTheme.neutralWhite,
+                          onTap: () {},
+                        ),
                         SizedBox(height: 20),
                         Center(
                           child: Row(
@@ -179,29 +187,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildButton(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorsTheme.fourthPrimary,
-          foregroundColor: ColorsTheme.thirdPrimary,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-        ),
-        child: TypoTheme.titleSemiBold_16(
-          context,
-          ColorsTheme.thirdPrimary,
-          text: 'Sign up',
-        ),
-      ),
     );
   }
 }

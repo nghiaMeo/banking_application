@@ -40,12 +40,14 @@ class TypoTheme {
     BuildContext context,
     Color color, {
     required String text,
+    TextAlign? textAlign,
   }) {
     return Text(
       text,
+      textAlign: textAlign,
       style: GoogleFonts.poppins(
         textStyle: TextStyle(
-          color: color ?? Colors.black,
+          color: color,
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
@@ -91,12 +93,14 @@ class TypoTheme {
     BuildContext context,
     Color color, {
     required String text,
+    TextAlign? textAlign,
   }) {
     return Text(
       text,
+      textAlign: textAlign,
       style: GoogleFonts.poppins(
         textStyle: TextStyle(
-          color: color ?? Colors.black,
+          color: color,
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
