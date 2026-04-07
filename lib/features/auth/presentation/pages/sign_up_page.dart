@@ -3,8 +3,8 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/features/auth/application/auth_providers.dart';
 import 'package:bank_app/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:bank_app/features/auth/presentation/providers/auth_notifier.dart';
 import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
 import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -210,11 +210,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           controller: _fullNameController,
         ),
         const SizedBox(height: 24),
-        inputFieldWidget(
-          context,
-          hint: 'Email',
-          controller: _emailController,
-        ),
+        inputFieldWidget(context, hint: 'Email', controller: _emailController),
         const SizedBox(height: 24),
         inputFieldWidget(
           context,

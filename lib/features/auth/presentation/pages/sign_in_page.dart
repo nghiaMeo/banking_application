@@ -3,9 +3,9 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/features/auth/application/auth_providers.dart';
 import 'package:bank_app/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:bank_app/features/auth/presentation/pages/sign_up_page.dart';
-import 'package:bank_app/features/auth/presentation/providers/auth_notifier.dart';
 import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
 import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +123,9 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         const SizedBox(height: 18),
                         buttonWidget(
                           context,
-                          title: authState.isLoading ? 'Signing in...' : 'Sign in',
+                          title: authState.isLoading
+                              ? 'Signing in...'
+                              : 'Sign in',
                           backgroundColorButton: authState.isLoading
                               ? ColorsTheme.neutralGreyMid
                               : ColorsTheme.fourthPrimary,
@@ -142,9 +144,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          ref
-                                                  .read(authProvider)
-                                                  .errorMessage ??
+                                          ref.read(authProvider).errorMessage ??
                                               'Sign in failed',
                                         ),
                                       ),
