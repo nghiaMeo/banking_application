@@ -3,11 +3,11 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
-import 'package:bank_app/presentation/auth/sign_in_page.dart';
-import 'package:bank_app/presentation/auth/success_change_password_page.dart';
-import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/custom_card_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
+import 'package:bank_app/features/auth/presentation/pages/sign_in_page.dart';
+import 'package:bank_app/features/auth/presentation/pages/success_change_password_page.dart';
+import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/custom_card_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,18 +20,18 @@ class ChangePasswordPage extends ConsumerStatefulWidget {
 }
 
 class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
-  bool obscureText_1 = true;
-  bool obscureText_2 = true;
+  bool obscureText1 = true;
+  bool obscureText2 = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsTheme.neutralWhileLight,
       appBar: AppBarCustom(
-        titleAppBar: "Change password",
+        titleAppBar: 'Change password',
         backGroundColor: Colors.transparent,
         colorElement: ColorsTheme.neutralGreyDeep,
-        fallBackWidget: SignInPage(),
+        fallBackWidget: const SignInPage(),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,24 +48,24 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
                 children: [
                   _buildInputFields(
                     context,
-                    title: "Type your new password",
-                    hint: "*************",
-                    obscureText: obscureText_1,
+                    title: 'Type your new password',
+                    hint: '*************',
+                    obscureText: obscureText1,
                     onToggle: () {
                       setState(() {
-                        obscureText_1 = !obscureText_1;
+                        obscureText1 = !obscureText1;
                       });
                     },
                   ),
                   const SizedBox(height: 16),
                   _buildInputFields(
                     context,
-                    title: "Confirm your new password",
-                    hint: "*************",
-                    obscureText: obscureText_2,
+                    title: 'Confirm your new password',
+                    hint: '*************',
+                    obscureText: obscureText2,
                     onToggle: () {
                       setState(() {
-                        obscureText_2 = !obscureText_2;
+                        obscureText2 = !obscureText2;
                       });
                     },
                   ),
@@ -78,7 +78,7 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
                     onTap: () {
                       AppNavigator.pushReplacement(
                         context,
-                        SuccessChangePasswordPage(),
+                        const SuccessChangePasswordPage(),
                       );
                     },
                   ),

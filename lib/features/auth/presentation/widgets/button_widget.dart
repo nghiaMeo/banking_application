@@ -1,6 +1,5 @@
+import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/theme/typo_theme.dart';
 
 Widget buttonWidget(
   BuildContext context, {

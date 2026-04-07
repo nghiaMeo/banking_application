@@ -1,7 +1,6 @@
+import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../core/theme/colors_theme.dart';
 
 Widget inputFieldWidget(
   BuildContext context, {
@@ -28,7 +27,7 @@ Widget inputFieldWidget(
               border: InputBorder.none,
               hintText: hint,
               hintStyle: GoogleFonts.poppins(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: ColorsTheme.neutralGreyLight,
                   fontSize: 14,
                 ),

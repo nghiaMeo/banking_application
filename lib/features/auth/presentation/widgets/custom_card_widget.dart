@@ -1,6 +1,5 @@
+import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/theme/colors_theme.dart';
 
 Widget customCardWidget(BuildContext context, {required Widget child}) {
   return Container(

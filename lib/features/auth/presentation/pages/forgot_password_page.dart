@@ -2,11 +2,11 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
-import 'package:bank_app/presentation/auth/sign_in_page.dart';
-import 'package:bank_app/presentation/auth/verify_code_page.dart';
-import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/custom_card_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/text_field_custom_widget.dart';
+import 'package:bank_app/features/auth/presentation/pages/sign_in_page.dart';
+import 'package:bank_app/features/auth/presentation/pages/verify_code_page.dart';
+import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/custom_card_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/text_field_custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,20 +52,20 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                   textFieldCustomWidget(
                     context,
                     _phoneController,
-                    title: "Type your phone number",
+                    title: 'Type your phone number',
                     color: ColorsTheme.neutralGreyMid,
-                    hint: "(+84)",
+                    hint: '(+84)',
                   ),
                   const SizedBox(height: 16),
                   TypoTheme.bodyMedium_14(
                     context,
                     ColorsTheme.neutralGreyDeep,
-                    text: "We texted you a code to verify your phone number",
+                    text: 'We texted you a code to verify your phone number',
                   ),
                   const SizedBox(height: 32),
                   buttonWidget(
                     context,
-                    title: "Send",
+                    title: 'Send',
                     backgroundColorButton: ColorsTheme.fourthPrimary,
                     textColor: Colors.white,
                     onTap: () {

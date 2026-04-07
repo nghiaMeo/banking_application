@@ -1,16 +1,16 @@
+import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
-import 'package:bank_app/core/utils/app_navigator.dart';
-import 'package:bank_app/presentation/auth/forgot_password_page.dart';
-import 'package:bank_app/presentation/auth/sign_up_page.dart';
-import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
+import 'package:bank_app/core/utils/app_navigator.dart';
+import 'package:bank_app/features/auth/presentation/pages/forgot_password_page.dart';
+import 'package:bank_app/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:bank_app/features/auth/presentation/providers/auth_notifier.dart';
+import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../core/asset/vectors/app_vectors.dart';
 
 class SignInPage extends ConsumerStatefulWidget {
   const SignInPage({super.key});
@@ -21,12 +21,23 @@ class SignInPage extends ConsumerStatefulWidget {
 
 class _SignInPageState extends ConsumerState<SignInPage> {
   bool obscureText = true;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authProvider);
+
     return Scaffold(
       appBar: AppBarCustom(
-        titleAppBar: "Sign in",
+        titleAppBar: 'Sign in',
         colorElement: Colors.white,
         backGroundColor: ColorsTheme.firstPrimary,
       ),
@@ -67,11 +78,16 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         const SizedBox(height: 20),
                         Center(child: SvgPicture.asset(AppVectors.signIn)),
                         const SizedBox(height: 24),
-                        inputFieldWidget(context, hint: 'Text input'),
+                        inputFieldWidget(
+                          context,
+                          hint: 'Email',
+                          controller: _emailController,
+                        ),
                         const SizedBox(height: 16),
                         inputFieldWidget(
                           context,
                           hint: 'Password',
+                          controller: _passwordController,
                           obscureText: obscureText,
                           trailing: InkWell(
                             onTap: () {
@@ -94,7 +110,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                             onTap: () {
                               AppNavigator.pushReplacement(
                                 context,
-                                ForgotPasswordPage(),
+                                const ForgotPasswordPage(),
                               );
                             },
                             child: TypoTheme.bodyMedium_14(
@@ -105,13 +121,37 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                           ),
                         ),
                         const SizedBox(height: 18),
-                        buttonWidget(context,
-                            title: 'Sign in',
-                            backgroundColorButton: ColorsTheme.fourthPrimary,
-                            textColor: ColorsTheme.neutralWhite,
-                            onTap: (){
-
-                            }),
+                        buttonWidget(
+                          context,
+                          title: authState.isLoading ? 'Signing in...' : 'Sign in',
+                          backgroundColorButton: authState.isLoading
+                              ? ColorsTheme.neutralGreyMid
+                              : ColorsTheme.fourthPrimary,
+                          textColor: ColorsTheme.neutralWhite,
+                          onTap: authState.isLoading
+                              ? () {}
+                              : () async {
+                                  final success = await ref
+                                      .read(authProvider.notifier)
+                                      .signIn(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                      );
+                                  if (!context.mounted) return;
+                                  if (!success) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          ref
+                                                  .read(authProvider)
+                                                  .errorMessage ??
+                                              'Sign in failed',
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                        ),
                         const SizedBox(height: 26),
                         Center(
                           child: Icon(
@@ -130,12 +170,12 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                                 ColorsTheme.neutralGreyDeep,
                                 text: "Don't have an account?",
                               ),
-                              SizedBox(width: 6),
+                              const SizedBox(width: 6),
                               InkWell(
                                 onTap: () {
                                   AppNavigator.pushReplacement(
                                     context,
-                                    SignUpPage(),
+                                    const SignUpPage(),
                                   );
                                 },
                                 child: TypoTheme.captionSemibold_14(

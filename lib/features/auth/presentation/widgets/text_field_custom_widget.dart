@@ -1,7 +1,6 @@
+import 'package:bank_app/core/theme/typo_theme.dart';
+import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../../../core/theme/typo_theme.dart';
-import 'input_field_widget.dart';
 
 Widget textFieldCustomWidget(
   BuildContext context,

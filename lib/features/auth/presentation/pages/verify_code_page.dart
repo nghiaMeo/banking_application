@@ -2,15 +2,14 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:bank_app/core/utils/app_navigator.dart';
-import 'package:bank_app/presentation/auth/forgot_password_page.dart';
-import 'package:bank_app/presentation/auth/widgets/button_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/custom_card_widget.dart';
-import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
+import 'package:bank_app/features/auth/presentation/pages/change_password_page.dart';
+import 'package:bank_app/features/auth/presentation/pages/forgot_password_page.dart';
+import 'package:bank_app/features/auth/presentation/widgets/button_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/custom_card_widget.dart';
+import 'package:bank_app/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'change_password_page.dart';
 
 class VerifyCodePage extends ConsumerStatefulWidget {
   final String phoneNumber;
@@ -27,7 +26,7 @@ class _GetCodePageState extends ConsumerState<VerifyCodePage> {
     return Scaffold(
       backgroundColor: ColorsTheme.neutralWhileLight,
       appBar: AppBarCustom(
-        titleAppBar: "Verify code",
+        titleAppBar: 'Verify code',
         backGroundColor: Colors.transparent,
         colorElement: ColorsTheme.neutralGreyDeep,
       ),
@@ -49,13 +48,13 @@ class _GetCodePageState extends ConsumerState<VerifyCodePage> {
                       TypoTheme.captionSemibold_14(
                         context,
                         ColorsTheme.neutralGreyMid,
-                        text: "Type a code",
+                        text: 'Type a code',
                       ),
                       const SizedBox(height: 12),
                       Row(
                         children: [
                           Expanded(
-                            child: inputFieldWidget(context, hint: "Code"),
+                            child: inputFieldWidget(context, hint: 'Code'),
                           ),
                           const SizedBox(width: 12),
                           SizedBox(
@@ -82,7 +81,7 @@ class _GetCodePageState extends ConsumerState<VerifyCodePage> {
                       RichText(
                         text: TextSpan(
                           text:
-                              "We texted you a code to verify your phone number (+84) ",
+                              'We texted you a code to verify your phone number (+84) ',
                           style: GoogleFonts.poppins(
                             textStyle: const TextStyle(
                               color: ColorsTheme.neutralGreyMid,
@@ -120,7 +119,7 @@ class _GetCodePageState extends ConsumerState<VerifyCodePage> {
                         onTap: () {
                           AppNavigator.pushReplacement(
                             context,
-                            ChangePasswordPage(),
+                            const ChangePasswordPage(),
                           );
                         },
                       ),
@@ -133,7 +132,10 @@ class _GetCodePageState extends ConsumerState<VerifyCodePage> {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () {
-                    AppNavigator.pushReplacement(context, ForgotPasswordPage());
+                    AppNavigator.pushReplacement(
+                      context,
+                      const ForgotPasswordPage(),
+                    );
                   },
                   child: TypoTheme.captionSemibold_14(
                     context,
