@@ -52,6 +52,7 @@ class AppVectors {
   static const handDill = '${basePathIcons}hand_dill$format';
   static const hide = '${basePathIcons}hide$format';
   static const home = '${basePathIcons}home$format';
+  static const homeFill = '${basePathIcons}home_fill$format';
   static const homeDill = '${basePathIcons}home_dill$format';
   static const hided = '${basePathIcons}hide$format';
   static const inPhone = '${basePathIcons}in_phone$format';
