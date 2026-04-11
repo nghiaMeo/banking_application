@@ -17,6 +17,11 @@ class AppVectors {
   static const receiptList = '${basePathCategory}receipt_list$format';
   static const syncDevices = '${basePathCategory}sync_devices$format';
   static const wallet = '${basePathCategory}wallet$format';
+  static const exchange = '${basePathCategory}exchange$format';
+  static const branch = '${basePathCategory}branch$format';
+  static const exchangeRate = '${basePathCategory}exchange_rate$format';
+  static const interestRate = '${basePathCategory}interest_rate$format';
+
 
   //flags
   static const ar = '${basePathFlags}Ar$format';

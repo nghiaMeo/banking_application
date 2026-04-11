@@ -2,6 +2,7 @@ import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_navigation_bar.dart';
 import 'package:bank_app/features/home/presentation/pages/home_tab_page.dart';
+import 'package:bank_app/features/home/presentation/pages/search_tab_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,14 +18,15 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   late final List<Widget> _pages = [
     HomeTabPage(),
-    _buildBottomTabPlaceholder(context, title: 'Search'),
-    _buildBottomTabPlaceholder(context, title: 'Message'),
-    _buildBottomTabPlaceholder(context, title: 'Setting'),
+    SearchTabPage(onBack: () => setState(() => _currentIndex = 0)),
+    _PlaceholderTab(title: 'Message'),
+    _PlaceholderTab(title: 'Setting'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsTheme.neutralWhite,
       body: IndexedStack(index: _currentIndex, children: _pages),
       bottomNavigationBar: AppNavigationBar(
         currentIndex: _currentIndex,
@@ -36,15 +38,19 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-Widget _buildBottomTabPlaceholder(
-  BuildContext context, {
-  required String title,
-}) {
-  return Center(
-    child: TypoTheme.titleSemiBold_24(
-      context,
-      ColorsTheme.firstPrimary,
-      text: title,
-    ),
-  );
+class _PlaceholderTab extends StatelessWidget {
+  const _PlaceholderTab({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: TypoTheme.titleSemiBold_24(
+        context,
+        ColorsTheme.firstPrimary,
+        text: title,
+      ),
+    );
+  }
 }
