@@ -41,7 +41,7 @@ class _HomeTabPageState extends ConsumerState<HomeTabPage> {
                     topRight: Radius.circular(32),
                   ),
                 ),
-                child: SingleChildScrollView(
+                child: Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

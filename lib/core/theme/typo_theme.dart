@@ -107,6 +107,24 @@ class TypoTheme {
       ),
     );
   }
+  static Widget bodyMedium_12(
+      BuildContext context,
+      Color color, {
+        required String text,
+        TextAlign? textAlign,
+      }) {
+    return Text(
+      text,
+      textAlign: textAlign,
+      style: GoogleFonts.poppins(
+        textStyle: TextStyle(
+          color: color,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
 
   static Widget captionSemibold_14(
       BuildContext context,

@@ -38,7 +38,7 @@ Widget bankCardWidget(BuildContext context) {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             gradient: const LinearGradient(
-              colors: [Color(0xFF221F8D), Color(0xFF247BFF)],
+              colors: [ColorsTheme.firstPrimary, ColorsTheme.secondSemantic],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -60,12 +60,13 @@ Widget bankCardWidget(BuildContext context) {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 20),
                   TypoTheme.titleSemiBold_24(
                     context,
                     Colors.white,
                     text: 'John Smith',
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 20),
                   TypoTheme.captionSemibold_14(
                     context,
                     Colors.white,
@@ -77,7 +78,7 @@ Widget bankCardWidget(BuildContext context) {
                     Colors.white,
                     text: '4756   ••••   ••••   9018',
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
