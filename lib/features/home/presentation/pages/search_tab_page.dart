@@ -1,7 +1,6 @@
 import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
-import 'package:bank_app/core/utils/app_bar_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SearchTabPage extends ConsumerStatefulWidget {
   const SearchTabPage({super.key, this.onBack});
 
-  /// Khi mở dưới dạng tab: quay về tab Home. Nếu null, thử `Navigator.pop`.
   final VoidCallback? onBack;
 
   @override
@@ -17,31 +15,31 @@ class SearchTabPage extends ConsumerStatefulWidget {
 }
 
 class _SearchTabPageState extends ConsumerState<SearchTabPage> {
-  static const List<_SearchMenuEntry> _entries = [
-    _SearchMenuEntry(
-      title: 'Branch',
-      subtitle: 'Search for branch',
-      vectorAsset: AppVectors.branch,
-      iconTint: ColorsTheme.firstPrimary,
-    ),
-    _SearchMenuEntry(
-      title: 'Interest rate',
-      subtitle: 'Search for interest rate',
-      vectorAsset: AppVectors.interestRate,
-      iconTint: ColorsTheme.fifthSemantic,
-    ),
-    _SearchMenuEntry(
-      title: 'Exchange rate',
-      subtitle: 'Search for exchange rate',
-      vectorAsset: AppVectors.exchangeRate,
-      iconTint: ColorsTheme.secondSemantic,
-    ),
-    _SearchMenuEntry(
-      title: 'Exchange',
-      subtitle: 'Exchange amount of money',
-      vectorAsset: AppVectors.exchange,
-      iconTint: null,
-    ),
+  final List<Map<String, Object>> _entries = [
+    {
+      'title': 'Branch',
+      'subtitle': 'Search for branch',
+      'vectorAsset': AppVectors.branch,
+      'iconTint': ColorsTheme.firstPrimary,
+    },
+    {
+      'title': 'Interest rate',
+      'subtitle': 'Search for interest rate',
+      'vectorAsset': AppVectors.interestRate,
+      'iconTint': ColorsTheme.fifthSemantic,
+    },
+    {
+      'title': 'Exchange rate',
+      'subtitle': 'Search for exchange rate',
+      'vectorAsset': AppVectors.exchangeRate,
+      'iconTint': ColorsTheme.secondSemantic,
+    },
+    {
+      'title': 'Exchange',
+      'subtitle': 'Exchange amount of money',
+      'vectorAsset': AppVectors.exchange,
+      'iconTint': ColorsTheme.secondSemantic,
+    },
   ];
 
   void _handleBack(BuildContext context) {
@@ -92,7 +90,18 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
               itemCount: _entries.length,
               separatorBuilder: (_, __) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
-                return _SearchMenuCard(entry: _entries[index]);
+                final item = _entries[index];
+                final title = item['title'] as String;
+                final subTitle = item['subtitle'] as String;
+                final vectorAsset = item['vectorAsset'] as String;
+                final iconTint = item['iconTint'] as Color;
+                return buildSearchMenuCard(
+                  context,
+                  title: title,
+                  vectorAsset: vectorAsset,
+                  iconTint: iconTint,
+                  subtitle: subTitle,
+                );
               },
             ),
           ),
@@ -102,87 +111,61 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
   }
 }
 
-class _SearchMenuEntry {
-  const _SearchMenuEntry({
-    required this.title,
-    required this.subtitle,
-    required this.vectorAsset,
-    required this.iconTint,
-  });
-
-  final String title;
-  final String subtitle;
-  final String vectorAsset;
-  final Color? iconTint;
-}
-
-class _SearchMenuCard extends StatelessWidget {
-  const _SearchMenuCard({required this.entry});
-
-  final _SearchMenuEntry entry;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(14),
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          color: ColorsTheme.neutralWhite,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-              color: ColorsTheme.neutralVani,
-              blurRadius: 16,
-              offset: Offset(0, 4),
+Widget buildSearchMenuCard(
+  BuildContext context, {
+  required String title,
+  required String subtitle,
+  required String vectorAsset,
+  Color? iconTint,
+}) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(14),
+    onTap: () {},
+    child: Container(
+      decoration: BoxDecoration(
+        color: ColorsTheme.neutralWhite,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: const [
+          BoxShadow(
+            color: ColorsTheme.neutralVani,
+            blurRadius: 16,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TypoTheme.titleSemiBold_16(
+                    context,
+                    ColorsTheme.neutralGreyDeep,
+                    text: title,
+                  ),
+                  const SizedBox(height: 6),
+                  TypoTheme.bodyRegular_16(
+                    context,
+                    ColorsTheme.neutralGreyMid,
+                    text: subtitle,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+            Container(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: SvgPicture.asset(vectorAsset, fit: BoxFit.contain),
+              ),
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TypoTheme.titleSemiBold_16(
-                      context,
-                      ColorsTheme.neutralGreyDeep,
-                      text: entry.title,
-                    ),
-                    const SizedBox(height: 6),
-                    TypoTheme.bodyRegular_16(
-                      context,
-                      ColorsTheme.neutralGreyMid,
-                      text: entry.subtitle,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              _SearchCardIllustration(entry: entry),
-            ],
-          ),
-        ),
       ),
-    );
-  }
-}
-
-class _SearchCardIllustration extends StatelessWidget {
-  const _SearchCardIllustration({required this.entry});
-
-  final _SearchMenuEntry entry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: SvgPicture.asset(entry.vectorAsset, fit: BoxFit.contain),
-      ),
-    );
-  }
+    ),
+  );
 }
