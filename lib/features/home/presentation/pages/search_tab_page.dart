@@ -1,6 +1,7 @@
 import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
+import 'package:bank_app/features/branches/presentation/pages/branch_finder_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,25 +21,22 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
       'title': 'Branch',
       'subtitle': 'Search for branch',
       'vectorAsset': AppVectors.branch,
-      'iconTint': ColorsTheme.firstPrimary,
+      'route': 'branch_finder',
     },
     {
       'title': 'Interest rate',
       'subtitle': 'Search for interest rate',
       'vectorAsset': AppVectors.interestRate,
-      'iconTint': ColorsTheme.fifthSemantic,
     },
     {
       'title': 'Exchange rate',
       'subtitle': 'Search for exchange rate',
       'vectorAsset': AppVectors.exchangeRate,
-      'iconTint': ColorsTheme.secondSemantic,
     },
     {
       'title': 'Exchange',
       'subtitle': 'Exchange amount of money',
       'vectorAsset': AppVectors.exchange,
-      'iconTint': ColorsTheme.secondSemantic,
     },
   ];
 
@@ -94,13 +92,21 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
                 final title = item['title'] as String;
                 final subTitle = item['subtitle'] as String;
                 final vectorAsset = item['vectorAsset'] as String;
-                final iconTint = item['iconTint'] as Color;
+                final route = item['route'] as String?;
                 return buildSearchMenuCard(
                   context,
                   title: title,
                   vectorAsset: vectorAsset,
-                  iconTint: iconTint,
                   subtitle: subTitle,
+                  onTap: route == 'branch_finder'
+                      ? () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const BranchFinderPage(),
+                            ),
+                          );
+                        }
+                      : null,
                 );
               },
             ),
@@ -117,10 +123,11 @@ Widget buildSearchMenuCard(
   required String subtitle,
   required String vectorAsset,
   Color? iconTint,
+  VoidCallback? onTap,
 }) {
   return InkWell(
     borderRadius: BorderRadius.circular(14),
-    onTap: () {},
+    onTap: onTap,
     child: Container(
       decoration: BoxDecoration(
         color: ColorsTheme.neutralWhite,
