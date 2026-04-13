@@ -1,50 +1,54 @@
+import 'package:bank_app/core/asset/vectors/app_vectors.dart';
+import 'package:bank_app/core/theme/colors_theme.dart';
+import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 Widget gridFeaturesWidget(BuildContext context) {
-  final List<Map<String, Object>> items = const [
+  final List<Map<String, Object>> items = [
     {
-      'icon': Icons.account_balance_wallet_outlined,
-      'color': Color(0xFF3D3AB8),
+      'svg': AppVectors.wallet,
+      'color': ColorsTheme.firstPrimary,
       'label': 'Account\nand Card',
     },
-    {
-      'icon': Icons.compare_arrows_rounded,
-      'color': Color(0xFFFF4E78),
+    const {
+      'svg': AppVectors.syncDevices,
+      'color': ColorsTheme.firstSemantic,
       'label': 'Transfer',
     },
-    {
-      'icon': Icons.vertical_align_bottom_rounded,
-      'color': Color(0xFF0D8BFF),
+    const {
+      'svg': AppVectors.creditCardIn,
+      'color': ColorsTheme.secondSemantic,
       'label': 'Withdraw',
     },
-    {
-      'icon': Icons.sim_card_download_outlined,
-      'color': Color(0xFFFFAF2A),
+    const {
+      'svg': AppVectors.mobileBanking,
+      'color': ColorsTheme.thirdSemantic,
       'label': 'Mobile\nprepaid',
     },
-    {
-      'icon': Icons.receipt_long_outlined,
-      'color': Color(0xFF52D5BA),
+    const {
+      'svg': AppVectors.receiptList,
+      'color': ColorsTheme.fourthSemantic,
       'label': 'Pay the\nbill',
     },
-    {
-      'icon': Icons.savings_outlined,
-      'color': Color(0xFF5655B9),
+    const {
+      'svg': AppVectors.pig,
+      'color': ColorsTheme.secondPrimary,
       'label': 'Save\nonline',
     },
-    {
-      'icon': Icons.credit_card_rounded,
-      'color': Color(0xFFFB6B18),
+    const {
+      'svg': AppVectors.creditCard,
+      'color': ColorsTheme.fifthSemantic,
       'label': 'Credit\ncard',
     },
-    {
-      'icon': Icons.article_outlined,
-      'color': Color(0xFF3D3AB8),
+    const {
+      'svg': AppVectors.fileParagraph,
+      'color': ColorsTheme.firstPrimary,
       'label': 'Transaction\nreport',
     },
-    {
-      'icon': Icons.perm_contact_calendar_outlined,
-      'color': Color(0xFFFF4267),
+    const {
+      'svg': AppVectors.contacts,
+      'color': ColorsTheme.firstSemantic,
       'label': 'Beneficiary',
     },
   ];
@@ -61,39 +65,37 @@ Widget gridFeaturesWidget(BuildContext context) {
     ),
     itemBuilder: (context, index) {
       final item = items[index];
-      final icon = item['icon'] as IconData;
+      final svg = item['svg'] as String;
       final color = item['color'] as Color;
       final label = item['label'] as String;
 
-      return Container(
-        decoration: BoxDecoration(
-          color: const Color(0xFFFDFDFF),
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x0C1E1E1E),
-              blurRadius: 16,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: color, size: 27),
-            const SizedBox(height: 9),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF8A8A97),
-                fontSize: 14,
-                height: 1.2,
-                fontWeight: FontWeight.w500,
+      return InkWell(
+        onTap: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorsTheme.neutralWhite,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: const [
+              BoxShadow(
+                color: ColorsTheme.neutralVani,
+                blurRadius: 16,
+                offset: Offset(0, 4),
               ),
-            ),
-          ],
+            ],
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(svg, color: color),
+              const SizedBox(height: 9),
+              TypoTheme.bodyMedium_12(
+                context,
+                ColorsTheme.neutralGreyMid,
+                text: label,
+              ),
+            ],
+          ),
         ),
       );
     },

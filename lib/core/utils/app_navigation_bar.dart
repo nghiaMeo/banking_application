@@ -22,75 +22,85 @@ class AppNavigationBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: const BoxDecoration(
           color: Colors.white,
-          border: Border(
-            top: BorderSide(color: Color(0xFFF0F0F0)),
-          ),
+          border: Border(top: BorderSide(color: ColorsTheme.neutralVani)),
         ),
         child: Row(
           children: [
-            _buildHomeActiveItem(context),
+            _buildNavItem(
+              context,
+              index: 0,
+              label: 'Home',
+              iconInactive: AppVectors.home,
+              iconActive: AppVectors.homeFill,
+            ),
             const Spacer(),
-            _buildIconItem(iconPath: AppVectors.search, index: 1),
+            _buildNavItem(
+              context,
+              index: 1,
+              label: 'Search',
+              iconInactive: AppVectors.search,
+              iconActive: AppVectors.search,
+            ),
             const Spacer(),
-            _buildIconItem(iconPath: AppVectors.letterEmpty, index: 2),
+            _buildNavItem(
+              context,
+              index: 2,
+              label: 'Message',
+              iconInactive: AppVectors.letterEmpty,
+              iconActive: AppVectors.letter,
+            ),
             const Spacer(),
-            _buildIconItem(iconPath: AppVectors.settingEmpty, index: 3),
+            _buildNavItem(
+              context,
+              index: 3,
+              label: 'Setting',
+              iconInactive: AppVectors.settingEmpty,
+              iconActive: AppVectors.setting,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHomeActiveItem(BuildContext context) {
-    final bool isActive = currentIndex == 0;
+  Widget _buildNavItem(
+    BuildContext context, {
+    required int index,
+    required String label,
+    required String iconInactive,
+    required String iconActive,
+  }) {
+    final bool isActive = currentIndex == index;
     return InkWell(
       borderRadius: BorderRadius.circular(24),
-      onTap: () => onTap(0),
+      onTap: () => onTap(index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(
+          horizontal: isActive ? 12 : 6,
+          vertical: isActive ? 8 : 6,
+        ),
         decoration: BoxDecoration(
           color: isActive ? ColorsTheme.firstPrimary : Colors.transparent,
           borderRadius: BorderRadius.circular(24),
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
-              AppVectors.homeFill,
-              width: 16,
-              height: 16,
+              isActive ? iconActive : iconInactive,
+              width: isActive ? 16 : 22,
+              height: isActive ? 16 : 22,
               colorFilter: ColorFilter.mode(
                 isActive ? Colors.white : ColorsTheme.neutralGreyMid,
                 BlendMode.srcIn,
               ),
             ),
-            const SizedBox(width: 6),
-            TypoTheme.captionMedium_14(
-              context,
-              isActive ? Colors.white : ColorsTheme.neutralGreyMid,
-              text: 'Home',
-            ),
+            if (isActive) ...[
+              const SizedBox(width: 6),
+              TypoTheme.captionMedium_14(context, Colors.white, text: label),
+            ],
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildIconItem({required String iconPath, required int index}) {
-    final bool isActive = currentIndex == index;
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: () => onTap(index),
-      child: Padding(
-        padding: const EdgeInsets.all(6),
-        child: SvgPicture.asset(
-          iconPath,
-          width: 22,
-          height: 22,
-          colorFilter: ColorFilter.mode(
-            isActive ? ColorsTheme.firstPrimary : ColorsTheme.neutralGreyMid,
-            BlendMode.srcIn,
-          ),
         ),
       ),
     );
