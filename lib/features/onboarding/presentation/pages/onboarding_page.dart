@@ -32,7 +32,7 @@ class OnboardingPage extends ConsumerWidget {
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(
-          child: Text('Failed to load onboarding: $error'),
+          child: Text('Failed to onboarding: $error'),
         ),
       ),
     );
