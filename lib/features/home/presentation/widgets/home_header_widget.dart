@@ -13,7 +13,7 @@ Widget homeHeaderWidget(BuildContext context) {
         child: const CircleAvatar(
           radius: 19,
           backgroundImage: NetworkImage(
-            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200',
+            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300',
           ),
         ),
       ),
