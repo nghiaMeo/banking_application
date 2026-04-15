@@ -2,8 +2,8 @@ import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../core/theme/colors_theme.dart';
-import '../../../../core/theme/typo_theme.dart';
+import '../../../../../core/theme/colors_theme.dart';
+import '../../../../../core/theme/typo_theme.dart';
 
 Widget homeHeaderWidget(BuildContext context) {
   return Row(
@@ -13,7 +13,7 @@ Widget homeHeaderWidget(BuildContext context) {
         child: const CircleAvatar(
           radius: 19,
           backgroundImage: NetworkImage(
-            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200',
+            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300',
           ),
         ),
       ),
