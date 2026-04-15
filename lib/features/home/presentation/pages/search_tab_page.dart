@@ -1,10 +1,14 @@
 import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
+import 'package:bank_app/core/utils/app_navigator.dart';
 import 'package:bank_app/features/branches/presentation/pages/branch_finder_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../exchange_rate/presentation/pages/exchange_rate_page.dart';
+import '../../../interest/presentation/pages/interest_rate_page.dart';
 
 class SearchTabPage extends ConsumerStatefulWidget {
   const SearchTabPage({super.key, this.onBack});
@@ -27,16 +31,19 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
       'title': 'Interest rate',
       'subtitle': 'Search for interest rate',
       'vectorAsset': AppVectors.interestRate,
+      'route': 'interest_rate',
     },
     {
       'title': 'Exchange rate',
       'subtitle': 'Search for exchange rate',
       'vectorAsset': AppVectors.exchangeRate,
+      'route': 'exchange_rate',
     },
     {
       'title': 'Exchange',
       'subtitle': 'Exchange amount of money',
       'vectorAsset': AppVectors.exchange,
+      'route': 'exchange',
     },
   ];
 
@@ -45,6 +52,21 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
       widget.onBack!();
     } else if (Navigator.canPop(context)) {
       Navigator.pop(context);
+    }
+  }
+
+  void _navigateTo(String route) {
+    final routes = {
+      'branch_finder': () => const BranchFinderPage(),
+      'interest_rate': () => const InterestRatePage(),
+      'exchange_rate': () => const ExchangeRatePage(),
+      // 'exchange': () => const ExchangePage(),
+    };
+
+    if (routes.containsKey(route)) {
+      AppNavigator.push(context, routes[route]!());
+    } else {
+      throw Exception('Invalid route: $route');
     }
   }
 
@@ -98,15 +120,7 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
                   title: title,
                   vectorAsset: vectorAsset,
                   subtitle: subTitle,
-                  onTap: route == 'branch_finder'
-                      ? () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => const BranchFinderPage(),
-                            ),
-                          );
-                        }
-                      : null,
+                  onTap: () => _navigateTo(route ?? ''),
                 );
               },
             ),
@@ -167,7 +181,7 @@ Widget buildSearchMenuCard(
               alignment: Alignment.center,
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: SvgPicture.asset(vectorAsset, fit: BoxFit.contain),
+                child: SvgPicture.asset(vectorAsset),
               ),
             ),
           ],

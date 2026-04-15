@@ -23,6 +23,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backGroundColor,
       elevation: 0,
+      automaticallyImplyLeading: false,
       leadingWidth: 0,
       title: Row(
         children: [
@@ -37,7 +38,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
               AppVectors.left,
               height: 16,
               width: 16,
-              color: colorElement,
+              colorFilter: ColorFilter.mode(colorElement, BlendMode.srcIn),
             ),
           ),
           SizedBox(width: 10),

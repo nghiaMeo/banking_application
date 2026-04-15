@@ -1,10 +1,11 @@
+import 'package:bank_app/features/home/presentation/pages/widgets/bank_card_widget.dart';
+import 'package:bank_app/features/home/presentation/pages/widgets/grid_features_widget.dart';
+import 'package:bank_app/features/home/presentation/pages/widgets/home_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/colors_theme.dart';
-import '../widgets/bank_card_widget.dart';
-import '../widgets/grid_features_widget.dart';
-import '../widgets/home_header_widget.dart';
+
 
 class HomeTabPage extends ConsumerStatefulWidget {
   const HomeTabPage({super.key});

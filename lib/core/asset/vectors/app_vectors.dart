@@ -1,6 +1,6 @@
 class AppVectors {
   static const basePathCategory = 'assets/svg/category/';
-  static const basePathFlags = 'assets/svg/flags';
+  static const basePathFlags = 'assets/svg/flags/';
   static const basePathIllustration = 'assets/svg/Illustration/';
   static const basePathIcons = 'assets/svg/icons/';
   static const basePathNavigationBar = 'assets/svg/navigation_bar/';
