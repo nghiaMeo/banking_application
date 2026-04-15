@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// Map Page cleanly refactored using Riverpod and Google Maps
 class BranchFinderPage extends ConsumerStatefulWidget {
   const BranchFinderPage({super.key});
 

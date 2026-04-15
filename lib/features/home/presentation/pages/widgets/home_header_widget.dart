@@ -2,8 +2,8 @@ import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../core/theme/colors_theme.dart';
-import '../../../../core/theme/typo_theme.dart';
+import '../../../../../core/theme/colors_theme.dart';
+import '../../../../../core/theme/typo_theme.dart';
 
 Widget homeHeaderWidget(BuildContext context) {
   return Row(

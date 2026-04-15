@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/colors_theme.dart';
-import '../../../../core/theme/typo_theme.dart';
+import '../../../../../core/theme/colors_theme.dart';
+import '../../../../../core/theme/typo_theme.dart';
+
 
 Widget bankCardWidget(BuildContext context) {
   return SizedBox(
