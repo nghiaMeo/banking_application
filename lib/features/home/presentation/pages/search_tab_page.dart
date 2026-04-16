@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../exchange/presentation/pages/exchange_page.dart';
 import '../../../exchange_rate/presentation/pages/exchange_rate_page.dart';
 import '../../../interest/presentation/pages/interest_rate_page.dart';
 
@@ -60,7 +61,7 @@ class _SearchTabPageState extends ConsumerState<SearchTabPage> {
       'branch_finder': () => const BranchFinderPage(),
       'interest_rate': () => const InterestRatePage(),
       'exchange_rate': () => const ExchangeRatePage(),
-      // 'exchange': () => const ExchangePage(),
+       'exchange': () => const ExchangePage(),
     };
 
     if (routes.containsKey(route)) {

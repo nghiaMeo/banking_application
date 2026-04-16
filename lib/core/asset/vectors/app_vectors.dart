@@ -99,6 +99,8 @@ class AppVectors {
   static const transfers = '${basePathIllustration}transfer$format';
   static const successPassword =
       '${basePathIllustration}success_password$format';
+  static const currency = '${basePathIllustration}currency$format';
+
 
   //navigation_bar
   static const faceId = '${basePathNavigationBar}face_id$format';
