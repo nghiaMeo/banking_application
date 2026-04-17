@@ -2,10 +2,11 @@ import 'package:bank_app/core/asset/vectors/app_vectors.dart';
 import 'package:bank_app/core/theme/colors_theme.dart';
 import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:bank_app/core/utils/app_bar_custom.dart';
-import 'package:bank_app/presentation/auth/widgets/input_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../auth/presentation/widgets/input_field_widget.dart';
 
 class TransferPage extends ConsumerStatefulWidget {
   const TransferPage({super.key});
@@ -39,6 +40,9 @@ class _TransferPageState extends ConsumerState<TransferPage> {
     _Beneficiary('Emma'),
     _Beneficiary('Justin'),
     _Beneficiary('Amanda'),
+    _Beneficiary('Amanda'),
+    _Beneficiary('Amanda'),
+    _Beneficiary('Amanda'),
   ];
 
   @override
@@ -62,15 +66,15 @@ class _TransferPageState extends ConsumerState<TransferPage> {
     return Scaffold(
       appBar: const AppBarCustom(
         titleAppBar: 'Transfer',
-        colorElement: Colors.white,
-        backGroundColor: ColorsTheme.firstPrimary,
+        colorElement: ColorsTheme.neutralGreyDeep,
+        backGroundColor: Colors.white,
       ),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: Container(
-                color: ColorsTheme.firstPrimary,
+                color: Colors.white,
                 child: Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -239,7 +243,7 @@ class _TransferPageState extends ConsumerState<TransferPage> {
           child: _transferTypeCard(
             context,
             type: _TransferType.cardNumber,
-            icon: AppVectors.creditCardIn,
+            icon: AppVectors.creditCard,
             label: 'Transfer via\ncard number',
           ),
         ),
@@ -248,8 +252,8 @@ class _TransferPageState extends ConsumerState<TransferPage> {
           child: _transferTypeCard(
             context,
             type: _TransferType.sameBank,
-            icon: AppVectors.bank,
-            label: 'Transfer to\nthe same bank',
+            icon: AppVectors.user,
+            label: 'Transfer to the same bank',
           ),
         ),
         const SizedBox(width: 10),
@@ -257,8 +261,8 @@ class _TransferPageState extends ConsumerState<TransferPage> {
           child: _transferTypeCard(
             context,
             type: _TransferType.otherBank,
-            icon: AppVectors.transfer,
-            label: 'Transfer to\nother bank',
+            icon: AppVectors.bank,
+            label: 'Transfer to other bank',
           ),
         ),
       ],
@@ -282,7 +286,7 @@ class _TransferPageState extends ConsumerState<TransferPage> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        height: 96,
+        height: 100,
         decoration: BoxDecoration(
           color: selected ? ColorsTheme.fourthPrimary : ColorsTheme.neutralWhileLight,
           borderRadius: BorderRadius.circular(16),
@@ -300,7 +304,7 @@ class _TransferPageState extends ConsumerState<TransferPage> {
               color: selected ? ColorsTheme.firstPrimary : ColorsTheme.neutralGreyMid,
             ),
             const Spacer(),
-            TypoTheme.bodyMedium_14(
+            TypoTheme.bodyMedium_12(
               context,
               ColorsTheme.neutralGreyDeep,
               text: label,
@@ -357,8 +361,8 @@ class _TransferPageState extends ConsumerState<TransferPage> {
               });
             },
             child: Container(
-              width: 74,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              width: 90,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
               decoration: BoxDecoration(
                 color: ColorsTheme.neutralWhileLight,
                 borderRadius: BorderRadius.circular(18),
@@ -370,7 +374,7 @@ class _TransferPageState extends ConsumerState<TransferPage> {
                 children: [
                   _beneficiaryAvatar(context, index, selected: selected),
                   const SizedBox(height: 6),
-                  TypoTheme.bodyMedium_14(
+                  TypoTheme.bodyMedium_12(
                     context,
                     ColorsTheme.neutralGreyDeep,
                     text: isAdd ? '' : b.name,

@@ -4,17 +4,22 @@ import 'package:bank_app/core/theme/typo_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget gridFeaturesWidget(BuildContext context) {
+Widget gridFeaturesWidget(
+  BuildContext context, {
+  required void Function(String route) onTap,
+}) {
   final List<Map<String, Object>> items = [
     {
       'svg': AppVectors.wallet,
       'color': ColorsTheme.firstPrimary,
       'label': 'Account\nand Card',
+      'route': 'account_card'
     },
     const {
       'svg': AppVectors.syncDevices,
       'color': ColorsTheme.firstSemantic,
       'label': 'Transfer',
+      'route': 'transfer'
     },
     const {
       'svg': AppVectors.creditCardIn,
@@ -68,9 +73,10 @@ Widget gridFeaturesWidget(BuildContext context) {
       final svg = item['svg'] as String;
       final color = item['color'] as Color;
       final label = item['label'] as String;
+      final route = item['route'] as String?;
 
       return InkWell(
-        onTap: () {},
+        onTap: route == null ? null : () => onTap(route),
         child: Container(
           decoration: BoxDecoration(
             color: ColorsTheme.neutralWhite,
