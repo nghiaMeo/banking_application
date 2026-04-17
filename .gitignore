@@ -23,6 +23,9 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
+# Local Google Maps key for iOS (copy from ios/Flutter/Secrets.example.xcconfig)
+ios/Flutter/Secrets.xcconfig
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id

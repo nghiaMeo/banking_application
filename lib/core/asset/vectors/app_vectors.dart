@@ -1,6 +1,6 @@
 class AppVectors {
   static const basePathCategory = 'assets/svg/category/';
-  static const basePathFlags = 'assets/svg/flags';
+  static const basePathFlags = 'assets/svg/flags/';
   static const basePathIllustration = 'assets/svg/Illustration/';
   static const basePathIcons = 'assets/svg/icons/';
   static const basePathNavigationBar = 'assets/svg/navigation_bar/';
@@ -17,6 +17,11 @@ class AppVectors {
   static const receiptList = '${basePathCategory}receipt_list$format';
   static const syncDevices = '${basePathCategory}sync_devices$format';
   static const wallet = '${basePathCategory}wallet$format';
+  static const exchange = '${basePathCategory}exchange$format';
+  static const branch = '${basePathCategory}branch$format';
+  static const exchangeRate = '${basePathCategory}exchange_rate$format';
+  static const interestRate = '${basePathCategory}interest_rate$format';
+
 
   //flags
   static const ar = '${basePathFlags}Ar$format';
@@ -52,6 +57,7 @@ class AppVectors {
   static const handDill = '${basePathIcons}hand_dill$format';
   static const hide = '${basePathIcons}hide$format';
   static const home = '${basePathIcons}home$format';
+  static const homeFill = '${basePathIcons}home_fill$format';
   static const homeDill = '${basePathIcons}home_dill$format';
   static const hided = '${basePathIcons}hide$format';
   static const inPhone = '${basePathIcons}in_phone$format';
@@ -93,6 +99,8 @@ class AppVectors {
   static const transfers = '${basePathIllustration}transfer$format';
   static const successPassword =
       '${basePathIllustration}success_password$format';
+  static const currency = '${basePathIllustration}currency$format';
+
 
   //navigation_bar
   static const faceId = '${basePathNavigationBar}face_id$format';
